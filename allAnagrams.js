@@ -1,23 +1,17 @@
-var input = "monk, konm, bbc, cbb, dell, ledl";
 function allAnagrams(string) {
+  var results = [];
 
-  function permutation(start, string) {
-    if (string.length === 1) {
-      return [start + string];
+  (function recurse(temp, available) {
+    if (temp.length === string.length && results.indexOf(temp) === -1) {
+      results.push(temp);
     } else {
-      var result = [];
-      for (var i = 0; i < string.length; i++) {
-        var result = permutation(string[i], string.substr(0, i) + string.substr(i + 1));
-        for (var j = 0; j < result.length; j++) {
-          result.push(start + result[j]);
-        }
+      for (var i = 0; i < available.length; i++) {
+        recurse(temp + available[i], available.slice(0, i).concat(available.slice(i + 1)));
       }
-      return result;
     }
-  }
+  })('', string);
 
-  return permutation('', string);
-
+  return results;
 }
 
 allAnagrams('abc');
