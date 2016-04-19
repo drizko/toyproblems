@@ -15,14 +15,14 @@ var asyncMap = function(tasks, cb) {
     })(i);
   }
 
-  tasks.forEach(function(task, i) {
-    task(function(result) {
-      results[i] = result;
-      if (--finished === 0) {
-        cb(results);
-      }
-    });
-  });
+  // tasks.forEach(function(task, i) {
+  //   task(function(result) {
+  //     results[i] = result;
+  //     if (--finished === 0) {
+  //       cb(results);
+  //     }
+  //   });
+  // });
 
 };
 
